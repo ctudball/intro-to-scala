@@ -21,6 +21,19 @@ object OptionExercises1 {
     *
     * scala> safeMean(Nil)
     * = None
+    *
+    * Hint: Use `sum`, `length` and convert the numerator or denominator to a `Double` using `toDouble`
+    *
+    * If you do division on two `Int`s, you will get an `Int` back, which is often not what you want!
+    *
+    * scala> 5 / 2
+    * = 2
+    *
+    * scala> 5.toDouble / 2
+    * = 2.5
+    *
+    * scala> 5 / 2.toDouble
+    * = 2.5
     **/
   def safeMean(nums: List[Int]): Option[Double] = ???
 
@@ -34,8 +47,16 @@ object OptionExercises1 {
     * scala> mkTrafficLight("red")
     * = Some(Red)
     *
+    * scala> mkTrafficLight("green")
+    * = Some(Green)
+    *
+    * scala> mkTrafficLight("yellow")
+    * = Some(Yellow)
+    *
     * scala> mkTrafficLight("bob")
     * = None
+    *
+    * Hint: Use pattern matching
     **/
   def mkTrafficLight(str: String): Option[TrafficLight] = ???
 
@@ -43,10 +64,16 @@ object OptionExercises1 {
     * scala> mkTrafficLightThenShow("red")
     * = "Traffic light is red"
     *
+    * scala> mkTrafficLightThenShow("green")
+    * = "Traffic light is green"
+    *
+    * scala> mkTrafficLightThenShow("yellow")
+    * = "Traffic light is yellow"
+    *
     * scala> mkTrafficLightThenShow("bob")
     * = "Traffic light `bob` is invalid"
     *
-    * Hint: Use `mkTrafficLight` and pattern matching.
+    * Hint: Use `mkTrafficLight` then pattern match.
     *
     * You can pattern match on `Option` using its two constructors `Some` and `None`:
     *

@@ -50,30 +50,6 @@ class LogParserTest extends FunSpec with TypeCheckedTripleEquals {
 
   }
 
-  describe("findLatestError") {
-
-    it("should return error with highest timestamp") {
-      val log1 = KnownLog(Error(1), 100, "one")
-      val log2 = KnownLog(Error(1), 200, "two")
-      val log3 = KnownLog(Error(1), 300, "three")
-
-      val latestError = findLatestError(List(log1, log2, log3))
-
-      assert(latestError === Some(log3))
-    }
-
-    it("should return None if no errors found") {
-      val log1 = KnownLog(Info, 100, "one")
-      val log2 = KnownLog(Info, 200, "two")
-      val log3 = KnownLog(Info, 300, "three")
-
-      val latestError = findLatestError(List(log1, log2, log3))
-
-      assert(latestError === None)
-    }
-
-  }
-
   describe("showLogMessage") {
 
     it("should return Info LogMessage in readable format") {
@@ -104,13 +80,14 @@ class LogParserTest extends FunSpec with TypeCheckedTripleEquals {
 
   describe("showErrorsOverSeverity") {
 
-    it("should all errors over a given severity level in a readable format") {
+    it("should show all errors over a given severity level in a readable format") {
       val logFile =
         """|I,147,mice in the air
            |W,149,could've been bad
            |E,5,158,some strange error
            |E,6,170,another error
-           |E,2,148,istereadea""".stripMargin
+           |E,2,148,istereadea
+           |E,4,199,frabjous""".stripMargin
 
       val errorsOverLevel4 = showErrorsOverSeverity(logFile, 4)
 

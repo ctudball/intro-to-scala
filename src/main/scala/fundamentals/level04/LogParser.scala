@@ -70,6 +70,7 @@ object LogParser {
     *
     * Hint: Use `parseLog`
     * Hint: Convert an Array to a List with .toList
+    * What if we get an empty line from the fileContent?
     */
   def parseLogFile(fileContent: String): List[LogMessage] = ???
 
@@ -80,7 +81,7 @@ object LogParser {
     * = List(UnknownLog("blblbaaaaa"))
     **/
   def getUnknowns(logs: List[LogMessage]): List[LogMessage] = ???
-
+ 
   /**
     * Write a function to convert a `LogMessage` to a readable `String`.
     *
@@ -111,11 +112,4 @@ object LogParser {
     * Now head over to `Main.scala` in the same package to complete the rest of the program.
     */
 
-  /**
-    * **BONUS CHALLENGE** Define a function that returns the error log with the most recent (highest) timestamp.
-    *
-    * What if we cannot find any error logs in the input?
-    * What if we get an empty line from the fileContent?
-    **/
-  def findLatestError(logs: List[LogMessage]): Option[LogMessage] = ???
 }

@@ -1,5 +1,7 @@
 # Intro to Scala Fundamentals
 
+[![Build Status](https://travis-ci.org/wjlow/intro-to-scala.svg?branch=master)](https://travis-ci.org/wjlow/intro-to-scala)
+
 This is a two day course. You are expected to know how to program in at least one programming language (Java, Ruby, JavaScript, etc.). The course teaches the fundamentals of using Scala as a functional programming language.
 
 This course is meant to be run in person. There are comments in the exercises to try and point you in the right direction so you should be able to do this in your spare time if you desire. Unit tests are included to verify your solutions for each exercise.
@@ -12,36 +14,36 @@ We welcome pull requests and feedback!
 
 ### Day 1
 
-| Time | Topic/Exercise |
-| :---: | :---: |
-| 09.30 | Start |
-| 10.00 | Intro to FP/Scala (__presentation__) |
-| 10.30 | [IntroExercises](src/main/scala/fundamentals/level01/IntroExercises.scala) |
-| 11.00 | 15 min break |
-| 11.15 | Intro to ADTs (__presentation__) |
-| 11.45 | [TypesExercises](src/main/scala/fundamentals/level02/TypesExercises.scala) |
-| 12.45 | Lunch |
-| 13.45 | [ListExercises](src/main/scala/fundamentals/level02/ListExercises.scala) |
-| 15.00 | 30 min break |
-| 15.30 | [NullExercises](src/main/scala/fundamentals/level03/NullExercises.scala) |
-| 16.00 | [OptionExercises pt. 1 (Safe constructors)](src/main/scala/fundamentals/level03/OptionExercises1.scala) |
-| 17.00 | End |
+| Time | Topic/Exercise | Presenter |
+| :---: | :---: | :---: |
+| 09.30 | Start | |
+| 10.00 | Intro to FP/Scala (__presentation__) | Chris |
+| 10.30 | [IntroExercises](src/main/scala/fundamentals/level01/IntroExercises.scala) | Felipe |
+| 11.00 | 15 min break | |
+| 11.15 | Intro to ADTs (__presentation__) | Jack |
+| 11.45 | [TypesExercises](src/main/scala/fundamentals/level02/TypesExercises.scala) | Felipe |
+| 12.45 | Lunch (not provided) | |
+| 13.45 | [ListExercises](src/main/scala/fundamentals/level02/ListExercises.scala) | Ashok |
+| 15.00 | 30 min break | |
+| 15.30 | [NullExercises](src/main/scala/fundamentals/level03/NullExercises.scala) | Tya |
+| 16.00 | [OptionExercises pt. 1 (Safe constructors)](src/main/scala/fundamentals/level03/OptionExercises1.scala) | Tya |
+| 17.00 | End | |
 
 ### Day 2
 
-| Time | Topic/Exercise |
-| :---: | :---: |
-| 09.30 | Intro to Error Handling (__presentation__) |
-| 10.00 | [OptionExercises pt. 2](src/main/scala/fundamentals/level03/OptionExercises2.scala) |
-| 11.00 | 15 min break |
-| 11.15 | [OptionExercises pt. 3](src/main/scala/fundamentals/level03/OptionExercises3.scala) |
-| 12.00 | [ExceptionExercises](src/main/scala/fundamentals/level03/ExceptionExercises.scala) |
-| 12.45 | Lunch |
-| 13.45 | [Exceptions2EitherExercises](src/main/scala/fundamentals/level03/Exceptions2EitherExercises.scala) |
-| 15.00 | 30 min break |
-| 15.30 | [TryExercises](src/main/scala/fundamentals/level03/TryExercises.scala) |
-| 16.00 | [LogParser](src/main/scala/fundamentals/level04/LogParser.scala) |
-| 17.00 | End |
+| Time | Topic/Exercise | Presenter |
+| :---: | :---: | :---: |
+| 09.30 | Intro to Error Handling (__presentation__) | Chris |
+| 10.00 | [OptionExercises pt. 2](src/main/scala/fundamentals/level03/OptionExercises2.scala) | Jack |
+| 11.00 | 15 min break | |
+| 11.15 | [OptionExercises pt. 3](src/main/scala/fundamentals/level03/OptionExercises3.scala) | Jack |
+| 12.00 | [ExceptionExercises](src/main/scala/fundamentals/level03/ExceptionExercises.scala) | Sanj |
+| 12.45 | Lunch (not provided) | |
+| 13.45 | [Exceptions2EitherExercises](src/main/scala/fundamentals/level03/Exceptions2EitherExercises.scala) | Sanj |
+| 15.00 | 30 min break | |
+| 15.30 | [TryExercises](src/main/scala/fundamentals/level03/TryExercises.scala) | Ashok |
+| 16.00 | [LogParser](src/main/scala/fundamentals/level04/LogParser.scala) | Stili |
+| 17.00 | End | |
 
 ## Pre-requisites
 
@@ -101,13 +103,13 @@ Launch the SBT shell.
 To only compile production code use:
 
 ```
-sbt> ~compile
+sbt> compile
 ```
 
 To compile production and test code use:
 
 ```
-sbt> ~test:compile
+sbt> test:compile
 ```
 
 ## How to run tests
@@ -154,12 +156,45 @@ The `~` watches for changes to your files and runs the command automatically. It
 
 To stop watching changes through `~`, press <kbd>Enter</kbd> to return to the SBT shell prompt.
 
+<details><summary>Reducing StackTraces Shown by Failed Tests</summary>
+
+<p>
+<p>
+The first time you run a test case you will be greeted by a long list of StackTraces:
+
+![default scalatest reporter](scalatest-reporter.png)
+
+If you want to see a simplified view use the *SimpleReporter* with:
+
+```
+testOnly *TestName -- -C fundamentals.SimpleReporter
+```
+
+![simple scalatest reporter](scalatest-simple-reporter.png)
+
+</p></p>
+</details>
+
 ## Jumping into a Scala REPL
 
 To launch into a Scala REPL with all production code use:
 
 ```
 sbt> console
+```
+
+Once in the console, you can import your production code as such:
+
+```
+import package.objectname._
+```
+
+For example, to use functions defined in _fundamentals.level01.IntroExercises_:
+
+```
+scala> import fundamentals.level01.IntroExercises._
+scala> add(1, 2)
+res0: Int = 3
 ```
 
 To launch into a Scala REPL with all production and test code use:
@@ -180,7 +215,7 @@ sbt> exit
 
 ## IDE setup
 
-<details><summary>IntelliJ IDEA</summary>
+<details><summary>IntelliJ IDEA (recommended)</summary>
 
 ![intellij](intellij.png)
 
