@@ -99,6 +99,33 @@ object Exceptions2EitherExercises {
     */
   def createPerson(name: String, age: String): Either[AppError, Person] = ???
 
+
+  /**
+    * scala> createPersonAndShow("Fred", "32")
+    * = "Fred is 32"
+    *
+    * scala> createPersonAndShow("", "32")
+    * = "Empty name supplied"
+    *
+    * scala> createPersonAndShow("Fred", "ThirtyTwo")
+    * = "Invalid age value supplied"
+    *
+    * scala> createPersonAndShow("Fred", "150")
+    * = "Invalid age range supplied"
+    *
+    * Hint: Use `createPerson` then pattern match.
+    *
+    * You can pattern match on `Either` using its two constructors `Left` and `Right`:
+    *
+    * ```
+    * eitherValue match {
+    *   case Left(error)  => // do something with error
+    *   case Right(value) => // do something with `value`
+    * }
+    * ```
+    */
+  def createPersonAndShow(name: String, age: String): String = ???
+
   /**
     * Implement the function createValidPeople that uses the personStringPairs List
     * to create a List of Person instances.
@@ -106,7 +133,7 @@ object Exceptions2EitherExercises {
     * scala> createValidPeople
     * = List(Person(Tokyo, 30), Person(Berlin, 43))
     *
-    * Hint: Use `map`, `createPerson` and `collect`
+    * Hint: Use `map` and `collect`
     *
     */
   def createValidPeople: List[Person] = ???
@@ -121,7 +148,7 @@ object Exceptions2EitherExercises {
     * InvalidAgeRange(provided age should be between 1-120: 0),
     * EmptyName(provided name is empty))
     *
-    * Hint: Use `map`, `createPerson` and `collect`
+    * Hint: Use `map` and `collect`
     */
   def collectErrors: List[AppError] = ???
 }
